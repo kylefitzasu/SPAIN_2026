@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spain Adventure — September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D9A0;
+    --gold-dark: #8B6914;
+    --terracotta: #C4603A;
+    --terracotta-light: #F2DACE;
+    --deep-navy: #1A2744;
+    --mid-navy: #253558;
+    --sky: #5B8DB8;
+    --cream: #FAF7F0;
+    --warm-white: #FFFEF9;
+    --soft-gray: #F0EDE4;
+    --text-dark: #1C1A14;
+    --text-mid: #4A4535;
+    --text-muted: #7A7260;
+    --border: rgba(201,168,76,0.25);
+    --shadow: rgba(26,39,68,0.08);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--deep-navy);
+    position: relative;
+    overflow: hidden;
+    padding: 70px 2rem 60px;
+    text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23C9A84C' opacity='0.15'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    letter-spacing: 0.3px;
+  }
+  .hero-cities {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .city-pill {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    padding: 7px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .city-pill:hover { background: rgba(201,168,76,0.28); }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--deep-navy);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  nav a {
+    display: inline-block;
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  nav a:hover, nav a.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── WEATHER BANNER ── */
+  .weather-banner {
+    background: linear-gradient(135deg, var(--terracotta-light) 0%, #FDE8D0 100%);
+    border-left: 4px solid var(--terracotta);
+    margin: 2.5rem auto;
+    max-width: 900px;
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .weather-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--terracotta);
+    margin-bottom: 8px;
+  }
+  .weather-col { flex: 1; min-width: 200px; }
+  .weather-col p { font-size: 14px; color: var(--text-mid); margin-bottom: 4px; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag {
+    background: rgba(196,96,58,0.12);
+    color: var(--terracotta);
+    border: 1px solid rgba(196,96,58,0.25);
+    border-radius: 100px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    scroll-margin-top: 48px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .city-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    opacity: 0.4;
+  }
+  .section-header-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--deep-navy);
+    line-height: 1.2;
+  }
+  .section-header-text .dates {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .duration-badge {
+    margin-left: auto;
+    background: var(--deep-navy);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  /* ── INTRO ── */
+  .city-intro {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 15px;
+    color: var(--text-mid);
+  }
+
+  /* ── DAY CARD ── */
+  .day-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  .day-header {
+    background: var(--deep-navy);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .day-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .day-title { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.75); }
+  .day-body { padding: 1.5rem; }
+
+  /* ── TIMELINE STOPS ── */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--border);
+  }
+  .stop {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .stop:last-child { margin-bottom: 0; }
+  .stop::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+  .stop-time {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 2px;
+  }
+  .stop h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--deep-navy);
+    margin-bottom: 4px;
+  }
+  .stop h4 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-light);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .stop h4 a:hover { color: var(--gold-dark); border-color: var(--gold); }
+  .stop p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ── MEAL TAG ── */
+  .meal-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .meal-b { background: #FFF3C4; color: #7A5C00; }
+  .meal-l { background: #D4EDDA; color: #1A5C2A; }
+  .meal-d { background: #D0E4F7; color: #0C3A6B; }
+  .meal-s { background: #F9E0D2; color: #7A2D10; }
+
+  /* ── 2-COL GRID ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  @media(max-width: 620px) { .two-col { grid-template-columns: 1fr; } }
+
+  .info-card {
+    background: var(--soft-gray);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .info-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--deep-navy);
+    margin-bottom: 10px;
+  }
+  .info-card ul { list-style: none; }
+  .info-card ul li {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    display: flex;
+    gap: 8px;
+  }
+  .info-card ul li:last-child { border-bottom: none; }
+  .info-card ul li::before { content: '→'; color: var(--gold); font-size: 11px; flex-shrink: 0; margin-top: 4px; }
+
+  /* ── TIPS BOX ── */
+  .tips-box {
+    background: var(--deep-navy);
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+    margin-top: 2rem;
+  }
+  .tips-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .tip-item h5 { font-size: 13px; font-weight: 700; color: var(--gold-light); margin-bottom: 4px; letter-spacing: 0.5px; }
+  .tip-item p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+  /* ── DIVIDER ── */
+  .city-divider {
+    max-width: 900px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── PACKING SECTION ── */
+  .packing-section {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+  }
+  .packing-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep-navy);
+    margin-bottom: 1.25rem;
+  }
+  .pack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+  .pack-cat h5 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; }
+  .pack-cat ul { list-style: none; }
+  .pack-cat ul li { font-size: 13.5px; color: var(--text-mid); padding: 3px 0; }
+  .pack-cat ul li::before { content: '✓  '; color: var(--gold); font-size: 11px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep-navy);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+    margin-top: 3rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── GOOGLE MAP EMBED ── */
+  .map-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: 1.5rem;
+    height: 280px;
+  }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <p class="hero-eyebrow">Your Spain Adventure</p>
+  <h1>¡<span>Bienvenidos</span> a España!</h1>
+  <p class="hero-sub">Two unforgettable weeks through the soul of southern Spain — late September 2026</p>
+  <div class="hero-cities">
+    <a class="city-pill" href="#madrid">Madrid</a>
+    <a class="city-pill" href="#sevilla">Sevilla</a>
+    <a class="city-pill" href="#granada">Granada</a>
+    <a class="city-pill" href="#gibraltar">Gibraltar</a>
+    <a class="city-pill" href="#packing">Packing Guide</a>
+  </div>
+</div>
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav>
+  <a href="#madrid">Madrid</a>
+  <a href="#sevilla">Sevilla</a>
+  <a href="#granada">Granada</a>
+  <a href="#gibraltar">Gibraltar</a>
+  <a href="#packing">Packing</a>
+  <a href="#tips">Local Tips</a>
+</nav>
+
+<!-- ═══ TEMP CONVERTER ═══ -->
+<div class="reveal" style="max-width:900px; margin: 2.5rem auto 0; padding: 0 2rem;">
+  <div style="background:var(--deep-navy); border-radius:14px; padding:1.5rem 1.75rem; display:flex; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">Temperature Converter</p>
+      <p style="font-size:13px; color:rgba(255,255,255,0.5); max-width:220px; line-height:1.5;">Slide to convert between Celsius &amp; Fahrenheit</p>
+    </div>
+    <div style="flex:1; min-width:260px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+        <span style="font-size:13px; color:rgba(255,255,255,0.5); width:20px; text-align:right;">°C</span>
+        <input type="range" id="cSlider" min="-10" max="50" value="24" step="1" style="flex:1;">
+        <span style="font-size:13px; color:rgba(255,255,255,0.5); width:20px;">°F</span>
+      </div>
+      <div style="display:flex; justify-content:center; gap:2rem; align-items:baseline;">
+        <div style="text-align:center;">
+          <span id="cVal" style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:#fff;">24</span>
+          <span style="font-size:1rem; color:var(--gold); margin-left:4px;">°C</span>
+        </div>
+        <span style="font-size:1.2rem; color:rgba(255,255,255,0.3);">=</span>
+        <div style="text-align:center;">
+          <span id="fVal" style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--gold);">75</span>
+          <span style="font-size:1rem; color:var(--gold); margin-left:4px;">°F</span>
+        </div>
+      </div>
+      <p id="tempDesc" style="text-align:center; font-size:12px; color:rgba(255,255,255,0.45); margin-top:10px; min-height:16px;"></p>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    var slider = document.getElementById('cSlider');
+    var cEl = document.getElementById('cVal');
+    var fEl = document.getElementById('fVal');
+    var desc = document.getElementById('tempDesc');
+    var descs = [[-10,0,'Cold — pack a warm coat'],[ 1,10,'Cool — sweater weather'],[11,17,'Mild — light jacket needed'],[18,22,'Comfortable — t-shirt with a layer'],[23,27,'Warm — perfect sightseeing weather'],[28,35,'Hot — light clothes, stay hydrated'],[36,50,'Very hot — seek shade, lots of water']];
+    function update(){
+      var c = parseInt(slider.value);
+      var f = Math.round(c * 9/5 + 32);
+      cEl.textContent = c;
+      fEl.textContent = f;
+      for(var i=0;i<descs.length;i++){
+        if(c>=descs[i][0] && c<=descs[i][1]){ desc.textContent = descs[i][2]; break; }
+      }
+    }
+    slider.addEventListener('input', update);
+    update();
+  })();
+</script>
+
+<!-- ═══ WEATHER BANNER ═══ -->
+<div class="weather-banner reveal" style="max-width:900px; margin: 1.5rem auto;">
+  <div class="weather-col">
+    <h3>☀️ Late September Weather</h3>
+    <p>Warm, sunny, and low crowds. Easily the best time to visit southern Spain — summer heat breaks, temperatures drop to a delightful 22–28°C (72–82°F). Evenings can dip to 16°C, so bring a layer. Rain is rare but pack a light jacket just in case.</p>
+  </div>
+  <div class="weather-col">
+    <p style="font-weight:700; color:var(--terracotta); font-size:14px; margin-bottom:6px;">What to Expect</p>
+    <div class="tag-row">
+      <span class="tag">Madrid: 24°C days</span>
+      <span class="tag">Sevilla: 28°C days</span>
+      <span class="tag">Granada: 22°C days</span>
+      <span class="tag">Gibraltar: 25°C days</span>
+      <span class="tag">Evenings: Light jacket</span>
+      <span class="tag">Crowds: Very low</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ═════════════  MADRID  ═════════════ -->
+<!-- ══════════════════════════════════════ -->
+<div class="section reveal" id="madrid">
+  <div class="section-header">
+    <span class="city-num">01</span>
+    <div class="section-header-text">
+      <h2>Madrid</h2>
+      <p class="dates">Days 1 – 2.5 &nbsp;·&nbsp; Arrive late September</p>
+    </div>
+    <span class="duration-badge">2.5 Days</span>
+  </div>
+
+  <div class="city-intro">
+    Madrid is Spain's grand, walkable capital — a city where world-class art, vibrant tapas culture, and wide boulevards meet. September is golden: locals are back from August holidays, terraces are buzzing, and the Prado's corridors are blissfully uncrowded. The city grid is easy to navigate on foot or by metro, and meals are the centerpiece of every day.
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 1</span>
+      <span class="day-title">The Historic Heart — Palaces, Parks & Tapas</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:00 AM</p>
+          <h4><a href="https://www.patrimonionacional.es/visita/palacio-real-de-madrid" target="_blank">Royal Palace of Madrid (Palacio Real)</a></h4>
+          <p>The largest royal palace in Western Europe — 3,500 rooms of jaw-dropping Baroque grandeur. Book tickets online in advance (€15). Budget 2 hours. Try to arrive right at opening to beat tour groups. The armory and Goya frescos in the Royal Chapel are not to be missed.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Mid-Morning · 11:30 AM</p>
+          <h4><a href="https://www.culturaydeporte.gob.es/templodebod/" target="_blank">Temple of Debod</a></h4>
+          <p>A 2,000-year-old Egyptian temple gifted to Spain — completely surreal standing among Madrid's city park. Free entry (timed tickets required online). The hilltop park offers sweeping views over the city skyline, perfect for photos.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 1:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/search/?q=La+Mi+Venta+Madrid" target="_blank">La Mi Venta</a> <span class="meal-badge meal-l">Lunch</span></h4>
+          <p>A beloved local spot steps from the Royal Palace. Ibérico ham, fresh squid, grilled meats — all excellent. Sit on the terrace if weather allows. The sangria here is perfectly balanced. Reservations recommended for weekends.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 3:30 PM</p>
+          <h4><a href="https://www.plazamayor.es" target="_blank">Plaza Mayor</a></h4>
+          <p>Madrid's stunning 17th-century main square — ringed by uniform ochre buildings with archways opening onto streets full of life. Have a coffee at one of the outdoor cafes, absorb the atmosphere, then wander down to the Mercado de San Miguel for afternoon pintxos and a glass of Rioja.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 4:30 PM</p>
+          <h4><a href="https://www.mercadodesanmiguel.es" target="_blank">Mercado de San Miguel</a></h4>
+          <p>Madrid's finest covered market in a stunning 1916 iron-and-glass building. Dozens of stalls with everything from oysters and jamón to pastries and wine. Go for the browse and graze — this is Spain's answer to a gourmet food hall.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Evening · 7:00 PM</p>
+          <h4><a href="https://www.rosalaloca.es" target="_blank">Rosi La Loca</a> <span class="meal-badge meal-d">Dinner</span></h4>
+          <p>Wildly popular near Plaza Mayor — vibrant pink décor, excellent seafood paella, and the energy of a full tapas bar. Reservations essential. The octopus and crispy sandwiches are standout dishes. More relaxed than it looks, great for groups.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 2</span>
+      <span class="day-title">Art, Retiro & an Authentic Night Out</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:00 AM</p>
+          <h4><a href="https://www.museodelprado.es" target="_blank">Museo Nacional del Prado</a></h4>
+          <p>One of the greatest art museums on earth. Pre-buy tickets (€15 — skip the sometimes 30-minute queue). After 6 PM entry is free if you want to pop back. Highlights: Velázquez's Las Meninas, Goya's Black Paintings, Bosch's Garden of Earthly Delights. Give yourself a full 2–3 hours — there's a good café inside to recharge.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 1:30 PM</p>
+          <h4><a href="https://www.latabernadepenalver.com" target="_blank">La Taberna de Peñalver</a> <span class="meal-badge meal-l">Lunch</span></h4>
+          <p>Consistently rated one of Madrid's best — the paella here draws raves. Great seafood tapas, outdoor terrace seating (heated for cool evenings). Excellent octopus and shrimp. Reservations strongly recommended — even for lunch. Ask for a terrace table.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 3:30 PM</p>
+          <h4><a href="https://www.retiro.es" target="_blank">El Retiro Park</a></h4>
+          <p>Madrid's beloved 125-hectare central park — a world-class green space. Rent a rowboat on the big lake (€8 for 45 min), stroll the rose garden, and find the stunning Crystal Palace hidden in the trees. Locals jog, relax, and gather here every day. A perfect afternoon wander — plan 1.5–2 hours.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Dinner · 8:00 PM</p>
+          <h4><a href="https://maps.app.goo.gl/losmontesdegalicia" target="_blank">Los Montes de Galicia</a> <span class="meal-badge meal-d">Dinner</span></h4>
+          <p>Considered one of Madrid's finest restaurants — Galician seafood and grilled meats. Cod croquettes, Galician octopus, Ibérico secreto. The cheesecake with mango jam is legendary. This is the splurge dinner of Madrid — book well in advance and dress nicely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2.5 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 3 — Half Day</span>
+      <span class="day-title">Morning Markets, then Train to Sevilla</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:00 AM</p>
+          <h4>Barrio de las Letras — The Literary Quarter</h4>
+          <p>A leisurely stroll through Madrid's charming bohemian neighborhood, packed with independent bookshops, cafes, and street art. Browse at your own pace, stop for a café con leche and a tostada with tomato, and pick up a local souvenir from a small shop.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Late Morning</p>
+          <h4><a href="https://www.renfe.com" target="_blank">AVE Train to Sevilla — Book in Advance</a></h4>
+          <p>The high-speed AVE from Madrid-Puerta de Atocha to Sevilla Santa Justa takes just 2.5 hours — one of Europe's best train journeys. Book via Renfe.com. Take the 12:00–1:30 PM departure to arrive with plenty of afternoon time. Business class (Preferente) is excellent value for long legs and comfort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <iframe src="https://maps.google.com/maps?q=Plaza+Mayor+Madrid,Spain&output=embed" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <h4>🍷 Must-Eat Madrid</h4>
+      <ul>
+        <li>Cocido madrileño — hearty chickpea & meat stew, very local</li>
+        <li>Bocadillo de calamares — fried squid sandwiches from street stalls</li>
+        <li>Patatas bravas — fried potatoes with spicy tomato sauce</li>
+        <li>Churros with hot chocolate at Chocolatería San Ginés</li>
+        <li>Vermut (vermouth) with olives — the classic Sunday ritual</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🗺 Insider Madrid Tips</h4>
+      <ul>
+        <li>Lunch is 2–4 PM, dinner starts 9–10 PM — embrace the schedule</li>
+        <li>Metro is fast and cheap (€1.50/ride) — get a 10-trip card</li>
+        <li>Museum tickets often free on Sundays after 5 PM</li>
+        <li>Free tapas with drinks in many bars around Lavapiés</li>
+        <li>Afternoon siesta is real — some shops close 2–5 PM</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="city-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ══════════════ SEVILLA ══════════════ -->
+<!-- ══════════════════════════════════════ -->
+<div class="section reveal" id="sevilla">
+  <div class="section-header">
+    <span class="city-num">02</span>
+    <div class="section-header-text">
+      <h2>Sevilla</h2>
+      <p class="dates">Days 3.5 – 6 &nbsp;·&nbsp; Three days of magic</p>
+    </div>
+    <span class="duration-badge">3 Days</span>
+  </div>
+
+  <div class="city-intro">
+    Sevilla is Spain at its most intoxicating — flamenco, orange trees, and some of the world's most ornate palaces. Late September is absolutely ideal: the brutal summer heat (Sevilla is often Spain's hottest city) has broken, leaving gloriously warm 26–28°C days perfect for walking. The Alcázar and Cathedral are non-negotiable. Give yourself evenings to simply wander the old city and end up wherever the tapas take you.
+  </div>
+
+  <!-- SEVILLA DAY 1 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 1 in Sevilla</span>
+      <span class="day-title">The Grand Monuments — Alcázar & Cathedral</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Arrive from Madrid · Early Afternoon</p>
+          <h4>Check In & First Tapas</h4>
+          <p>Stay in the Santa Cruz or Triana neighborhoods for the best experience. Drop bags, grab lunch near your hotel — try a classic salmorejo (Sevilla's cold tomato soup) and a cold Cruzcampo beer to settle in.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 3:30 PM</p>
+          <h4><a href="https://www.alcazarsevilla.org" target="_blank">Royal Alcázar of Sevilla</a></h4>
+          <p>One of the most jaw-dropping palace complexes on earth — a layered Moorish-Gothic-Renaissance UNESCO masterpiece still used by the Spanish royal family. Book the Royal Apartments upgrade (limited slots, book weeks ahead). The peacock-filled gardens and hedge maze are magical. Budget 2.5 hours minimum.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Evening · 7:30 PM</p>
+          <h4><a href="https://espacioeslava.es" target="_blank">Espacio Eslava</a> <span class="meal-badge meal-d">Dinner</span></h4>
+          <p>Creative tapas at their finest — chef-quality dishes in a buzzy bar setting. Sit at the bar to watch the kitchen in action. The croquetas and daily soup are spectacular. Come at opening (7:30 PM) or book ahead — it fills fast. Closed Mondays.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEVILLA DAY 2 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 2 in Sevilla</span>
+      <span class="day-title">La Giralda, River Walk & Flamenco Night</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:00 AM</p>
+          <h4><a href="https://www.catedraldesevilla.es" target="_blank">Sevilla Cathedral & La Giralda</a></h4>
+          <p>The world's largest Gothic cathedral — also holds Christopher Columbus's tomb. La Giralda tower is accessible via ramps (no stairs!) making it perfect for everyone. Views from the top are panoramic and spectacular. Buy tickets online in advance — include the Giralda in your booking. Budget 2 hours.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Mid-Morning · 11:30 AM</p>
+          <h4><a href="https://www.setassevilla.com" target="_blank">Las Setas de Sevilla (Metropol Parasol)</a></h4>
+          <p>The world's largest wooden structure — a futuristic mushroom-shaped viewing platform that rises above the ancient Roman ruins at its base. Walk the elevated walkway for 360° views of the city. More impressive than it sounds. Check the underground archaeological museum too.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 1:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/ElRinconcillo" target="_blank">El Rinconcillo</a> <span class="meal-badge meal-l">Lunch</span></h4>
+          <p>Sevilla's oldest bar — open since 1670. They chalk your tab on the wooden counter. Order the pluma ibérica, croquetas de jamón, and a cold draft beer. Atmosphere is unmatched. The bar staff cut jamón by hand right in front of you. A genuinely historic experience.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 3:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/TorreDelOro" target="_blank">Torre del Oro & Guadalquivir Riverfront Walk</a></h4>
+          <p>The 13th-century golden watchtower on the river. Browse the small maritime museum, then take the beautiful riverside walk north toward the Triana bridge. This is Sevilla's most cinematic stroll — especially as the light turns golden in late afternoon.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Evening · 7:00 PM</p>
+          <h4>Live Flamenco Show</h4>
+          <p>Sevilla is the birthplace of flamenco — and seeing a real performance here is essential. Recommended venues: Casa de la Memoria (intimate, authentic, book ahead at <a href="https://www.casadelamemoria.es" target="_blank">casadelamemoria.es</a>) or Tablao El Arenal (larger but excellent quality). The best shows start around 7–8 PM.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Late Dinner · 9:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/LaBartola" target="_blank">La Bartola</a> <span class="meal-badge meal-d">Dinner</span></h4>
+          <p>A real local gem near the cathedral — grilled octopus with sweet potato purée is the star. Iberian pork cheek with parmentier potato is incredible. Prepare to wait 20–30 minutes, but it's absolutely worth it. Outdoor seating on the charming Santa Maria square.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEVILLA DAY 3 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 3 in Sevilla</span>
+      <span class="day-title">Palaces, Gardens & the Triana Barrio</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:30 AM</p>
+          <h4><a href="https://www.lasduenas.es" target="_blank">Palacio de las Dueñas</a></h4>
+          <p>The private palace of the House of Alba — still inhabited, still magical. Far less crowded than the Alcázar but equally beautiful. Stunning flower-filled patios, art collections, and a peaceful garden. The audio guide tells the fascinating family history. Allow 1–1.5 hours.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Mid-Morning · 11:00 AM</p>
+          <h4><a href="https://www.parquemarialuisa.es" target="_blank">Parque de María Luisa & Plaza de España</a></h4>
+          <p>Sevilla's crown jewel — a vast romantic park containing the breathtaking semicircular Plaza de España, built for the 1929 Ibero-American Exposition. Each Spanish province has its own tiled alcove — find your favorites! Rent a rowboat on the canal for €6. This is genuinely one of Europe's most spectacular public spaces.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 1:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/ElLibrero" target="_blank">El Librero Tapas y Quesos</a> <span class="meal-badge meal-l">Lunch</span></h4>
+          <p>Cozy tapas bar near the Cathedral with a book theme. Squid ink paella and Ibérico pork stew are exceptional. Owner Pablo makes everyone feel welcome. Great for a leisurely, relaxed lunch. Closed Sundays.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 3:30 PM</p>
+          <h4>Triana Barrio — Ceramic Shops & River Views</h4>
+          <p>Cross the Isabel II bridge into Triana, Sevilla's most authentic neighborhood. Famous for hand-painted ceramic tiles — buy one as a souvenir. Stroll along the river, pop into the Mercado de Triana for fresh produce, and have a sherry at a traditional bar while watching the boats drift by.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <iframe src="https://maps.google.com/maps?q=Royal+Alcazar+Sevilla,Spain&output=embed" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <h4>🥘 Must-Eat Sevilla</h4>
+      <ul>
+        <li>Salmorejo — Sevilla's cold tomato cream soup with jamón and egg</li>
+        <li>Espinacas con garbanzos — spinach with chickpeas, a classic local tapa</li>
+        <li>Carrillada ibérica — braised Ibérico pork cheek</li>
+        <li>Manzanilla sherry — served cold, pairs with everything here</li>
+        <li>Pringá — a rich slow-cooked meat stew spread, a Sevilla tradition</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🗺 Insider Sevilla Tips</h4>
+      <ul>
+        <li>The old city is compact — almost everything is walkable</li>
+        <li>Alcázar sells out weeks ahead — book as soon as possible</li>
+        <li>September evenings are magical for outdoor tapas (20°C+)</li>
+        <li>Triana is excellent for ceramics, cheaper than tourist areas</li>
+        <li>Don't miss sunset from the Metropol Parasol walkway</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="city-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ══════════════ GRANADA ══════════════ -->
+<!-- ══════════════════════════════════════ -->
+<div class="section reveal" id="granada">
+  <div class="section-header">
+    <span class="city-num">03</span>
+    <div class="section-header-text">
+      <h2>Granada</h2>
+      <p class="dates">Days 7 – 8 &nbsp;·&nbsp; Where Moorish Spain Lives</p>
+    </div>
+    <span class="duration-badge">2 Days</span>
+  </div>
+
+  <div class="city-intro">
+    Granada is arguably Spain's most captivating city — home to the Alhambra, one of the world's most magnificent palaces, set against the snow-capped Sierra Nevada. The Albaicín neighborhood is a UNESCO-listed Moorish quarter of white-washed houses and hidden viewpoints. Granada is also the last city in Spain to offer free tapas with every drink — order a beer, get a plate of food. It's delightful.
+  </div>
+
+  <!-- GRANADA DAY 1 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 1 in Granada</span>
+      <span class="day-title">The Alhambra — Book Months in Advance</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">⚠️ Critical Booking Note</p>
+          <h4>Reserve Alhambra Tickets Now</h4>
+          <p>The Alhambra Nasrid Palaces sell out <strong>weeks to months</strong> in advance. Book immediately at <a href="https://tickets.alhambra-patronato.es" target="_blank">tickets.alhambra-patronato.es</a> (€19 with Nasrid Palaces). Nasrid Palace entry is time-specific — choose 9:30 AM or 11:00 AM for the best morning light. If tickets are sold out, check 3rd-party vendors like GetYourGuide.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Morning · 8:30 AM</p>
+          <h4><a href="https://tickets.alhambra-patronato.es" target="_blank">The Alhambra — Full Morning</a></h4>
+          <p>Dedicate your entire morning to this UNESCO masterpiece. Start at the Alcazaba fortress (military ramparts with incredible views), move to the Nasrid Palaces (the Court of the Myrtles, Court of the Lions — utterly breathtaking stucco and tilework), then end at the Palacio de Carlos V. Wear comfortable walking shoes — you'll cover several kilometers on uneven stone. Budget 3–4 hours minimum.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Late Morning · 11:30 AM</p>
+          <h4><a href="https://maps.app.goo.gl/Generalife" target="_blank">Generalife Gardens</a></h4>
+          <p>The royal summer gardens above the Alhambra — cypress-lined paths, bubbling fountains, and extraordinary views of the Sierra Nevada. In late September, the roses are still blooming and the heat is comfortable. A peaceful escape after the palaces — allow 45 minutes.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 1:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/ElRinconDeJulio" target="_blank">El Rincón de Julio</a> <span class="meal-badge meal-l">Lunch</span></h4>
+          <p>One of Granada's most beloved restaurants — intimate and personal, run by Julio himself. The oxtail (rabo de toro) is extraordinary. The octopus, croquettes, and pork elbow are all remarkable. Only a handful of tables — reserve in advance. Located on the lively Calle Navas tapas street.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 4:00 PM</p>
+          <h4><a href="https://maps.app.goo.gl/MiradorSanNicolas" target="_blank">Mirador de San Nicolás — Sunset View</a></h4>
+          <p>The most famous viewpoint in Granada — the Alhambra glowing against the Sierra Nevada at sunset is one of Spain's most iconic images. Street musicians play, locals gather, and the golden light is magical. Take a taxi up (the walk up through Albaicín is lovely but steep — about 30 min). Arrive 45 minutes before sunset.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Dinner · 9:00 PM</p>
+          <h4><a href="https://maps.app.goo.gl/LaTelefonica" target="_blank">La Telefónica</a> <span class="meal-badge meal-d">Dinner</span></h4>
+          <p>Outstanding creative cuisine — Ibérico pork shoulder, fried eggplant with honey and goat cheese, and spectacular seafood. Described by seasoned travelers as one of Granada's finest restaurants. The fried eggplants are a Granada specialty and here they're exceptional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRANADA DAY 2 -->
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day 2 in Granada</span>
+      <span class="day-title">The Albaicín, Tea Houses & Moroccan Granada</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:30 AM</p>
+          <h4>Albaicín Barrio Walking Tour</h4>
+          <p>The ancient Moorish quarter of Granada — a UNESCO-listed labyrinth of steep cobblestone alleys, whitewashed houses draped in bougainvillea, and hidden plazas. Wander freely toward the church of San Nicolás and the smaller viewpoints like Mirador de San Cristóbal. Stop for breakfast at any small café.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Mid-Morning · 11:00 AM</p>
+          <h4><a href="https://maps.app.goo.gl/SacromonteCaves" target="_blank">Sacromonte Cave District</a></h4>
+          <p>Granada's extraordinary cave neighborhood, carved into the hillside, where the Roma community has lived for centuries and where flamenco was born in this region. The Cueva Museo del Sacromonte explains the history beautifully. Evening flamenco shows in actual cave venues (Venta El Gallo is excellent) are a bucket-list experience.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 1:30 PM</p>
+          <h4>Free Tapas Lunch — Granada's Signature Tradition</h4>
+          <p>In Granada, every drink comes with a free tapa. Order a beer or wine, receive a plate of food — it's that simple. Head to Calle Navas or around Plaza Nueva. Visit 3–4 bars and you've had a full, memorable meal for the cost of a few drinks. This is Granada at its most authentic.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 3:30 PM</p>
+          <h4>Tetería (Moroccan Tea House) & Arabic Quarter</h4>
+          <p>The Calle de Elvira and surrounding streets are lined with Moroccan-style tea houses (teterías) and spice markets — a reminder of Granada's Moorish past. Step into a dimly lit tetería for mint tea and honey pastries. Browse the artisan shops for leather goods, ceramics, and handmade jewelry.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Dinner · 8:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/ElMercader" target="_blank">El Mercader</a> <span class="meal-badge meal-d">Dinner</span></h4>
+          <p>A hidden gem in the Albaicín — family-run, cozy, exceptional. Duck breast, deer loin lasagna, fried chickpea salad. The owners are warm and the food is remarkable value. Closed Mondays and Tuesdays. Reserve ahead — it's small and fills quickly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <iframe src="https://maps.google.com/maps?q=Alhambra+Granada,Spain&output=embed" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <h4>🍽 Must-Eat Granada</h4>
+      <ul>
+        <li>Berenjenas con miel — fried eggplant drizzled with sugar cane honey</li>
+        <li>Rabo de toro — slow-braised oxtail, a southern Spanish classic</li>
+        <li>Free tapas with every drink — this is not optional, it's heaven</li>
+        <li>Pionono — a local pastry from nearby Santa Fe, sweet and unique</li>
+        <li>Habas con jamón — broad beans with Ibérico ham and olive oil</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🗺 Insider Granada Tips</h4>
+      <ul>
+        <li>Alhambra tickets: book the moment you read this — seriously</li>
+        <li>Take bus C30/C32 to the Alhambra (€1.40, runs every 7 min)</li>
+        <li>Albaicín is best explored on foot with no fixed route</li>
+        <li>Sunset at Mirador San Nicolás: arrive 45 min early for front spots</li>
+        <li>Late September evenings cool quickly — bring that light layer</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="city-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ══════════════ GIBRALTAR ══════════════ -->
+<!-- ══════════════════════════════════════ -->
+<div class="section reveal" id="gibraltar">
+  <div class="section-header">
+    <span class="city-num">04</span>
+    <div class="section-header-text">
+      <h2>Gibraltar</h2>
+      <p class="dates">Day 9 &nbsp;·&nbsp; One Extraordinary Day</p>
+    </div>
+    <span class="duration-badge">1 Day</span>
+  </div>
+
+  <div class="city-intro">
+    Gibraltar is one of the most unique places in Europe — a tiny British Overseas Territory jutting off the southern tip of Spain, looking across just 14km of water to Morocco. The famous Rock dominates everything. Wild Barbary macaques roam freely at the top, WWII tunnels wind through the limestone, and the views to Africa on a clear September day are extraordinary. A car or taxi day-trip from Granada or an overnight from Málaga works perfectly.
+  </div>
+
+  <div class="day-card reveal">
+    <div class="day-header">
+      <span class="day-label">Day in Gibraltar</span>
+      <span class="day-title">The Rock, Monkeys, Tunnels & Africa Views</span>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="stop">
+          <p class="stop-time">Morning · 9:00 AM</p>
+          <h4><a href="https://www.visitgibraltar.gi/nature-reserve" target="_blank">Upper Rock Nature Reserve</a></h4>
+          <p>Take the cable car (or a taxi — both get you to the top of the Rock). The combination ticket covers most attractions. Views from the top stretch across the Mediterranean, Spain, and on clear days, clearly to Morocco and Africa — genuinely stunning. Late September is ideal for clear skies.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Morning · 9:30 AM</p>
+          <h4>Barbary Macaques</h4>
+          <p>The only wild monkeys in Europe — hundreds of them roam freely at the top of the Rock. They're entertaining and completely wild. Keep bags zipped and phone out of reach (they genuinely steal things). Don't feed them. They're cheekiest near the cable car upper station. This alone makes the cable car journey worth it.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Mid-Morning · 10:30 AM</p>
+          <h4><a href="https://www.visitgibraltar.gi/great-siege-tunnels" target="_blank">Great Siege Tunnels & St. Michael's Cave</a></h4>
+          <p>The hand-carved tunnels date to the 1779 Great Siege — remarkably well-preserved and atmospheric. St. Michael's Cave is a stunning natural cavern with dramatic stalactites, used as a concert hall today. Both are included in the Upper Rock combination ticket. Allow 1.5–2 hours total.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Lunch · 12:30 PM</p>
+          <h4><a href="https://maps.app.goo.gl/Aquaterra" target="_blank">Aquaterra</a> <span class="meal-badge meal-l">Lunch</span></h4>
+          <p>Gibraltar's best-reviewed restaurant on Casemates Square — pig cheeks in sherry sauce, Ibérico cold cuts, great wines. Gibraltar uses British pounds (GBP), but most places accept euros. Great for a relaxed sit-down meal before the afternoon. Book ahead — it fills quickly.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Afternoon · 2:30 PM</p>
+          <h4>Main Street & Europa Point</h4>
+          <p>Walk the pedestrianized Main Street — a curious mix of British pubs, Spanish bakeries, duty-free shops and Gibraltar's quirky multicultural identity. Then head south to Europa Point — the very tip of Europe, where a lighthouse marks the meeting of the Atlantic and Mediterranean. On clear days, the Rif Mountains of Morocco are clearly visible just 14km away.</p>
+        </div>
+        <div class="stop">
+          <p class="stop-time">Evening · Head to Málaga or Return to Granada</p>
+          <h4>Onward Travel</h4>
+          <p>Gibraltar doesn't have a train station — buses and taxis connect to La Línea de la Concepción (Spain), then onward by bus or taxi to Málaga (90 min) or Algeciras. If flying home from Málaga, this is a natural last night. Málaga has a wonderful old town and excellent seafood — worth an overnight if schedules allow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <iframe src="https://maps.google.com/maps?q=Rock+of+Gibraltar&output=embed" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="two-col">
+    <div class="info-card">
+      <h4>🪨 Gibraltar Essentials</h4>
+      <ul>
+        <li>Cable car runs 9:30 AM–5:15 PM — go up early for clearest views</li>
+        <li>Buy Upper Rock combo ticket (cable car + all attractions ~£35)</li>
+        <li>Currency: British Pounds (GBP), but euros widely accepted</li>
+        <li>Cross the border on foot — walking is easy, driving is slow</li>
+        <li>September = clear visibility to Morocco on most days</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>🐒 Monkey Tips</h4>
+      <ul>
+        <li>Zip all bags and pockets before approaching monkeys</li>
+        <li>Never feed them — it's illegal and makes them aggressive</li>
+        <li>Don't take food or drinks out near them</li>
+        <li>They're most active in the morning</li>
+        <li>Keep sunglasses on your face — they will grab them off</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="city-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ════════════  PACKING  ══════════════ -->
+<!-- ══════════════════════════════════════ -->
+<div class="section reveal" id="packing">
+  <div class="section-header">
+    <span class="city-num">05</span>
+    <div class="section-header-text">
+      <h2>Packing Guide</h2>
+      <p class="dates">What to wear &amp; bring — Late September Spain</p>
+    </div>
+  </div>
+
+  <div class="city-intro">
+    Late September in southern Spain is a dream — warm but not hot. Days are 22–28°C (72–82°F), evenings cool to 15–18°C. You'll be walking miles on cobblestones, dining at outdoor terraces, and touring palaces. Think: comfortable, stylish, and layerable.
+  </div>
+
+  <div class="packing-section">
+    <h3>Clothing & Footwear</h3>
+    <div class="pack-grid">
+      <div class="pack-cat">
+        <h5>Daytime</h5>
+        <ul>
+          <li>Breathable linen or cotton shirts/blouses (3–4)</li>
+          <li>Light trousers or chinos (2 pairs)</li>
+          <li>One pair smart shorts (Madrid is relaxed)</li>
+          <li>Sundresses / lightweight skirts</li>
+          <li>A light cotton layer for AC interiors</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <h5>Evenings</h5>
+        <ul>
+          <li>Smart casual outfits (Spanish dress up for dinner)</li>
+          <li>One light blazer or stylish cardigan</li>
+          <li>A versatile scarf (doubles as sun cover &amp; layer)</li>
+          <li>At least 1 dressier outfit for nicer restaurants</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <h5>Footwear</h5>
+        <ul>
+          <li>Supportive walking shoes — cobblestones are unforgiving</li>
+          <li>Comfortable sandals for evenings</li>
+          <li>One dressier pair for nicer restaurants</li>
+          <li>Broken-in shoes ONLY — no new shoes on this trip</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <h5>Accessories</h5>
+        <ul>
+          <li>Sunglasses — sun is still strong in September</li>
+          <li>Sun hat or cap for outdoor sightseeing</li>
+          <li>Small crossbody bag (pickpockets in busy areas)</li>
+          <li>Compact umbrella or rain jacket (just in case)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 1.5rem;" class="packing-section">
+    <h3>Essentials &amp; Practicalities</h3>
+    <div class="pack-grid">
+      <div class="pack-cat">
+        <h5>Documents</h5>
+        <ul>
+          <li>Passport (valid 6+ months beyond return)</li>
+          <li>Travel insurance card &amp; documents</li>
+          <li>Printed hotel confirmations</li>
+          <li>Alhambra ticket printout or mobile QR</li>
+          <li>Emergency contact list</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <h5>Health &amp; Comfort</h5>
+        <ul>
+          <li>SPF 30–50 sunscreen</li>
+          <li>Blister pads (for cobblestone days)</li>
+          <li>Any personal medications</li>
+          <li>Portable phone battery charger</li>
+          <li>Reusable water bottle</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <h5>Tech</h5>
+        <ul>
+          <li>EU plug adapter (Type C)</li>
+          <li>Unlocked phone or international plan</li>
+          <li>Google Maps offline maps downloaded</li>
+          <li>Google Translate app (Spanish pack offline)</li>
+        </ul>
+      </div>
+      <div class="pack-cat">
+        <h5>Money &amp; Payments</h5>
+        <ul>
+          <li>Credit card with no foreign transaction fees</li>
+          <li>€150–200 cash for small bars, markets, taxis</li>
+          <li>Notify your bank before traveling</li>
+          <li>Gibraltar: GBP or euros both work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="city-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ═════════════  LOCAL TIPS  ══════════ -->
+<!-- ══════════════════════════════════════ -->
+<div class="section reveal" id="tips">
+  <div class="section-header">
+    <span class="city-num">06</span>
+    <div class="section-header-text">
+      <h2>Local Tips</h2>
+      <p class="dates">Navigate Spain like a local</p>
+    </div>
+  </div>
+
+  <div class="tips-box">
+    <h3>⭐ Essential Spain Knowledge</h3>
+    <div class="tips-grid">
+      <div class="tip-item">
+        <h5>Meal Times</h5>
+        <p>Breakfast 8–10 AM. Lunch (the main meal) 2–4 PM. Tapas/pintxos 7–9 PM. Dinner 9–11 PM. Eating at "American hours" marks you as a tourist — embrace the schedule.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Ordering Coffee</h5>
+        <p>Café con leche = espresso with warm milk (breakfast). Cortado = small espresso with a splash of milk. Café solo = straight espresso. Never "latte." Always excellent.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Tipping</h5>
+        <p>Tipping is optional and modest in Spain. Round up at a bar, leave €1–2 at casual restaurants, 5–10% at fine dining. Never expected, always appreciated.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Reservations</h5>
+        <p>Book the top restaurants 3–7 days ahead. Monuments (Alcázar, Alhambra, Prado) should be booked online now — they sell out, especially on weekends.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Getting Around</h5>
+        <p>AVE trains connect cities quickly. Within cities, metros are excellent. Taxis are cheap. Uber works in Madrid and Sevilla. In Granada, taxis are best for the Alhambra and Albaicín hills.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Safety</h5>
+        <p>Spain is very safe for tourists. Main risk is pickpocketing in crowded markets and on public transit. Keep phone in a front pocket and use a crossbody bag. Don't leave bags on chair backs at restaurants.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Language</h5>
+        <p>"Hola" (hello), "Gracias" (thank you), "Por favor" (please), "La cuenta, por favor" (the bill, please), "Dos cervezas, por favor" (two beers, please) — these go a very long way.</p>
+      </div>
+      <div class="tip-item">
+        <h5>Shops & Siestas</h5>
+        <p>Many smaller shops close 2–5 PM for siesta, especially in Sevilla and Granada. Museums, restaurants, and tourist attractions stay open. Good time to rest, enjoy a long lunch, or take a short nap.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Your Spain Adventure &nbsp;·&nbsp; Late September 2026</p>
+  <p style="margin-top: 8px;">Crafted with care for the journey of a lifetime &nbsp;·&nbsp; <span>¡Buen viaje!</span></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if(el.isIntersecting) { el.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('.section[id], .hero');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if(window.scrollY >= s.offsetTop - 100) cur = s.id || '';
+    });
+    navLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + cur);
+    });
+  });
+</script>
+</body>
+</html>
