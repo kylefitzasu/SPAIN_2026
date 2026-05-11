@@ -449,8 +449,57 @@
   <a href="#tips">Local Tips</a>
 </nav>
 
+<!-- ═══ TEMP CONVERTER ═══ -->
+<div class="reveal" style="max-width:900px; margin: 2.5rem auto 0; padding: 0 2rem;">
+  <div style="background:var(--deep-navy); border-radius:14px; padding:1.5rem 1.75rem; display:flex; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+    <div>
+      <p style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:6px;">Temperature Converter</p>
+      <p style="font-size:13px; color:rgba(255,255,255,0.5); max-width:220px; line-height:1.5;">Slide to convert between Celsius &amp; Fahrenheit</p>
+    </div>
+    <div style="flex:1; min-width:260px;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+        <span style="font-size:13px; color:rgba(255,255,255,0.5); width:20px; text-align:right;">°C</span>
+        <input type="range" id="cSlider" min="-10" max="50" value="24" step="1" style="flex:1;">
+        <span style="font-size:13px; color:rgba(255,255,255,0.5); width:20px;">°F</span>
+      </div>
+      <div style="display:flex; justify-content:center; gap:2rem; align-items:baseline;">
+        <div style="text-align:center;">
+          <span id="cVal" style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:#fff;">24</span>
+          <span style="font-size:1rem; color:var(--gold); margin-left:4px;">°C</span>
+        </div>
+        <span style="font-size:1.2rem; color:rgba(255,255,255,0.3);">=</span>
+        <div style="text-align:center;">
+          <span id="fVal" style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:700; color:var(--gold);">75</span>
+          <span style="font-size:1rem; color:var(--gold); margin-left:4px;">°F</span>
+        </div>
+      </div>
+      <p id="tempDesc" style="text-align:center; font-size:12px; color:rgba(255,255,255,0.45); margin-top:10px; min-height:16px;"></p>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    var slider = document.getElementById('cSlider');
+    var cEl = document.getElementById('cVal');
+    var fEl = document.getElementById('fVal');
+    var desc = document.getElementById('tempDesc');
+    var descs = [[-10,0,'Cold — pack a warm coat'],[ 1,10,'Cool — sweater weather'],[11,17,'Mild — light jacket needed'],[18,22,'Comfortable — t-shirt with a layer'],[23,27,'Warm — perfect sightseeing weather'],[28,35,'Hot — light clothes, stay hydrated'],[36,50,'Very hot — seek shade, lots of water']];
+    function update(){
+      var c = parseInt(slider.value);
+      var f = Math.round(c * 9/5 + 32);
+      cEl.textContent = c;
+      fEl.textContent = f;
+      for(var i=0;i<descs.length;i++){
+        if(c>=descs[i][0] && c<=descs[i][1]){ desc.textContent = descs[i][2]; break; }
+      }
+    }
+    slider.addEventListener('input', update);
+    update();
+  })();
+</script>
+
 <!-- ═══ WEATHER BANNER ═══ -->
-<div class="weather-banner reveal" style="max-width:900px; margin: 2.5rem auto;">
+<div class="weather-banner reveal" style="max-width:900px; margin: 1.5rem auto;">
   <div class="weather-col">
     <h3>☀️ Late September Weather</h3>
     <p>Warm, sunny, and low crowds. Easily the best time to visit southern Spain — summer heat breaks, temperatures drop to a delightful 22–28°C (72–82°F). Evenings can dip to 16°C, so bring a layer. Rain is rare but pack a light jacket just in case.</p>
